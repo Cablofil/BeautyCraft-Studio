@@ -27,6 +27,8 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->registration()
+            ->passwordReset()
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -53,6 +55,10 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->renderHook( 
+                'panels::auth.login.form.after',
+                fn () => view('auth.socialite.google')
+            );
     }
 }
