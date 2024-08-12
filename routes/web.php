@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SampleController;
 use App\Http\Controllers\SocialiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('invoke', SampleController::class);
 
 Route::get('/auth/{provider}/redirect', [SocialiteController::class, 'redirect'])
     ->name('socialite.redirect');
